@@ -6,4 +6,4 @@ export default function StopWatchButton({children, onClick, classes}: {children:
             {children}
         </button>
     )
-}
+} 
