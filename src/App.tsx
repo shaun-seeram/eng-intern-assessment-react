@@ -5,7 +5,7 @@ import StopWatch from './components/StopWatch'
 export default function App() {
 
     return(
-        <div>
+        <div className='stopwatchContainer'>
             <StopWatch />
         </div>
     )

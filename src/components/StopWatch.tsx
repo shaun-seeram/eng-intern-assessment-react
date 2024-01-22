@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import StopWatchButton from './StopWatchButton';
+import LapsContainer from './LapsContainer';
 
 export default function StopWatch() {
 
@@ -58,32 +59,23 @@ export default function StopWatch() {
 
     return(
         <>
-            <div>{formatTime(time)}</div>
-
-            <div>
-                { timerActive ? 
-                    <StopWatchButton onClick={handlePauseTimer}>Pause</StopWatchButton> : 
-                    <StopWatchButton onClick={handleStartTimer}>Start</StopWatchButton>
-                }
-
-                { timerActive ? 
-                    <StopWatchButton onClick={handleLapTimer}>Lap</StopWatchButton> : 
-                    <StopWatchButton onClick={handleResetTimer}>Reset</StopWatchButton>
-                }
-            </div>
-
-            <div>
-                {laps.map((lap, i) => {
-
-                    if (laps.length === 0 || ( i > 0 && laps[i] === laps[i - 1]) || lap === 0) {
-                        return 
+            <div className='stopwatchUpper'>
+                <div className='stopwatchTime'>{formatTime(time)}</div>
+                <div className='stopwatchButtonContainer'>
+                    { timerActive ? 
+                        <StopWatchButton onClick={handleLapTimer} classes="">Lap</StopWatchButton> : 
+                        <StopWatchButton onClick={handleResetTimer} classes="">Reset</StopWatchButton>
                     }
 
-                    return (
-                        <p key={i}>Lap {i+1}: {formatTime(i > 0 ? laps[i] - laps[i - 1] : lap)}</p>
-                    )
-                })}
+                    { timerActive ? 
+                        <StopWatchButton onClick={handlePauseTimer} classes="stop">Pause</StopWatchButton> : 
+                        <StopWatchButton onClick={handleStartTimer} classes="start">Start</StopWatchButton>
+                    }
+                </div>
             </div>
+
+
+            <LapsContainer laps={laps} formatTime={formatTime} />
         </>
     )
 }

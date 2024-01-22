@@ -16,4 +16,80 @@ html {
 
 body {
     font-size: 1.6rem;
+    width: 100%;
+    max-width: 390px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+header {
+    text-align: center;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    height: 15px;
+}
+
+.stopwatchUpper {
+    height: calc((100vh - 45px) / 2) ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stopwatchLower {
+    height: calc((100vh - 45px) / 2) ;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.stopwatchLower::-webkit-scrollbar {
+    display: none;
+  }
+
+.stopwatchUpper .stopwatchTime {
+    height: 100%;
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stopwatchUpper .stopwatchButtonContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stopwatchUpper .stopwatchButtonContainer button {
+    width: 20%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    border: none;
+    background-color: #333333;
+    color: #FFF;
+}
+
+.stopwatchUpper .stopwatchButtonContainer button.start {
+    background-color: #19371f;
+    color: #80c684;
+}
+
+.stopwatchUpper .stopwatchButtonContainer button.stop {
+    background-color: #330d0b;
+    color: #ed4b4d;
+}
+
+.stopwatchLower ul {
+    padding-left: 0;
+}
+
+.stopwatchLower li {
+    font-size: 1.4rem;
+    list-style: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #212121;
+    display: flex;
+    justify-content: space-between;
 }
