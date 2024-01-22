@@ -2,6 +2,7 @@ import React from "react";
 import StopWatchButton from "./StopWatchButton";
 
 export default function ButtonsContainer({timerActive, onStart, onPause, onLap, onReset}: {timerActive: boolean, onStart: React.MouseEventHandler<HTMLButtonElement>, onPause: React.MouseEventHandler<HTMLButtonElement>, onLap: React.MouseEventHandler<HTMLButtonElement>, onReset: React.MouseEventHandler<HTMLButtonElement>}) {
+
     return (
         <div className='stopwatchButtonContainer'>
             {timerActive ?

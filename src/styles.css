@@ -102,3 +102,11 @@ header {
     display: flex;
     justify-content: space-between;
 }
+
+.stopwatchLower li.best {
+    color: #2fd159;
+}
+
+.stopwatchLower li.worst {
+    color: #f6483f;
+}
