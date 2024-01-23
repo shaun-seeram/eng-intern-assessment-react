@@ -21,9 +21,15 @@ export default function App() {
     const [laps, setLaps] = useState<number[]>(JSON.parse(localStorage.getItem("laps")) || []);
     const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
-    window.onbeforeunload = () => {
-        localStorage.setItem("time", JSON.stringify(time))
-    }
+        const everySecond = time % 250 === 0
+
+        useEffect(() => {
+            window.onbeforeunload = () => {
+                localStorage.setItem("time", JSON.stringify(time))
+            }
+        }, [everySecond])
+
+        // ^^ Indented block persists time on refresh. I felt it would be too intensive to reset the onbeforeunload function everytime "time" changed, so I opted for every 25 milliseconds and using a computed value.
 
     // useEffect(() => {
     //     if (timerActive) {
