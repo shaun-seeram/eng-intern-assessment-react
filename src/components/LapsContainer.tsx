@@ -41,10 +41,8 @@ export default React.memo(function LapsContainer({laps, formatTime}: LapsContain
     // ^^ Created an array of nodes, then reversed it so the latest laps appeared first.
 
     return (
-        <div className='stopwatchLower'>
-            <ul>
-                {lapNodeArray}
-            </ul>
-        </div>
+        <ul>
+            {lapNodeArray}
+        </ul>
     )
 })

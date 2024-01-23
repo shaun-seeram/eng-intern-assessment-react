@@ -83,8 +83,10 @@ export default function App() {
                 <StopWatch time={formatTime(time)} />
                 <ButtonsContainer timerActive={timerActive} onStart={handleStartTimer} onPause={handlePauseTimer} onLap={handleLapTimer} onReset={handleResetTimer} />
             </div>
+            <div className='stopwatchLower'>
+                <LapsContainer laps={laps} formatTime={formatTime} />
+            </div>
 
-            <LapsContainer laps={laps} formatTime={formatTime} />
         </div>
     )
 }
