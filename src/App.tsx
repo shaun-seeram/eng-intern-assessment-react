@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import LapsContainer from './components/LapsContainer';
 import StopWatch from './components/StopWatch'
 import ButtonsContainer from './components/ButtonsContainer';
@@ -9,7 +9,7 @@ function formatTime(time: number) {
     const m = Math.floor((time / 1000 / 60) % 60).toLocaleString('en-US', {minimumIntegerDigits: 2});
     const h = Math.floor((time / 1000 / 60 / 60) % 24).toLocaleString('en-US', {minimumIntegerDigits: 2});
 
-    return `${h}:${m}:${s}.${ms}`
+    return `${h}:${m}:${s}.${ms}`;
 }
 
 // Helper function moved here so it's not continuously recreated when the component is rerendered.
@@ -17,9 +17,13 @@ function formatTime(time: number) {
 export default function App() {
 
     const [timerActive, setTimerActive] = useState(false);
-    const [time, setTime] = useState(0);
+    const [time, setTime] = useState<number>(JSON.parse(localStorage.getItem("time")) || 0);
     const [laps, setLaps] = useState<number[]>(JSON.parse(localStorage.getItem("laps")) || []);
     const timerRef = useRef<ReturnType<typeof setInterval>>(null);
+
+    window.onbeforeunload = () => {
+        localStorage.setItem("time", JSON.stringify(time))
+    }
 
     // useEffect(() => {
     //     if (timerActive) {
@@ -39,9 +43,9 @@ export default function App() {
         setTimerActive(true);
         timerRef.current = setInterval(() => {
             setTime((oldTime) => {
-                return oldTime += 10
-            })
-        }, 10)
+                return oldTime += 10;
+            });
+        }, 10);
     }
 
     function handlePauseTimer() {
@@ -53,8 +57,9 @@ export default function App() {
         setTimerActive(false);
         clearInterval(timerRef.current);
         localStorage.removeItem("laps");
-        setTime(0)
-        setLaps([])
+        setTime(0);
+        localStorage.removeItem("time");
+        setLaps([]);
     }
 
     function handleLapTimer() {
@@ -62,8 +67,8 @@ export default function App() {
             localStorage.setItem("laps", JSON.stringify([...oldLapsArray, time]));
             return (
                 [...oldLapsArray, time]
-            )
-        })
+            );
+        });
     }
     
     return(
