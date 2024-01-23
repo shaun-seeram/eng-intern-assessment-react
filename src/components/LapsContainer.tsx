@@ -1,6 +1,11 @@
 import React from 'react'
 
-export default React.memo(function LapsContainer({laps, formatTime}: {laps: Array<number>, formatTime: Function}) {
+interface LapsContainerProps {
+    laps: Array<number>,
+    formatTime: Function
+}
+
+export default React.memo(function LapsContainer({laps, formatTime}: LapsContainerProps) {
 
     const sortedArray = laps.map((lap, i) => {
         if (i > 0) {

@@ -12,12 +12,14 @@ function formatTime(time: number) {
     return `${h}:${m}:${s}.${ms}`
 }
 
+// Function moved here so it's not continuously recreated when the component is rerendered.
+
 export default function App() {
 
     const [timerActive, setTimerActive] = useState(false);
     const [time, setTime] = useState(0);
-    const [laps, setLaps] = useState([]);
-    const timerRef = useRef(null);
+    const [laps, setLaps] = useState<number[]>([]);
+    const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
     // useEffect(() => {
     //     if (timerActive) {
