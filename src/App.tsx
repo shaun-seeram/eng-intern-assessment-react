@@ -18,7 +18,7 @@ export default function App() {
 
     const [timerActive, setTimerActive] = useState(false);
     const [time, setTime] = useState(0);
-    const [laps, setLaps] = useState<number[]>([]);
+    const [laps, setLaps] = useState<number[]>(JSON.parse(localStorage.getItem("laps")) || []);
     const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
     // useEffect(() => {
@@ -52,14 +52,20 @@ export default function App() {
     function handleResetTimer() {
         setTimerActive(false);
         clearInterval(timerRef.current);
+        localStorage.removeItem("laps");
         setTime(0)
         setLaps([])
     }
 
     function handleLapTimer() {
-        setLaps((oldLapsArray) => [...oldLapsArray, time])
+        setLaps((oldLapsArray) => {
+            localStorage.setItem("laps", JSON.stringify([...oldLapsArray, time]));
+            return (
+                [...oldLapsArray, time]
+            )
+        })
     }
-
+    
     return(
         <div className='stopwatchContainer'>
             <div className='stopwatchUpper'>
