@@ -13,3 +13,5 @@ export default function StopWatchButton({children, onClick, classes}: StopWatchB
         </button>
     )
 } 
+
+// Reusable component

@@ -24,3 +24,5 @@ export default function ButtonsContainer({timerActive, onStart, onPause, onLap, 
         </div>
     )
 }
+
+// Ternary statement to conditionally show required buttons based on state

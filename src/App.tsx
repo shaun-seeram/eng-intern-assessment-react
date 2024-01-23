@@ -12,7 +12,7 @@ function formatTime(time: number) {
     return `${h}:${m}:${s}.${ms}`
 }
 
-// Function moved here so it's not continuously recreated when the component is rerendered.
+// Helper function moved here so it's not continuously recreated when the component is rerendered.
 
 export default function App() {
 
