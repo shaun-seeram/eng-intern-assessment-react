@@ -4,7 +4,7 @@ export default function StopWatch({time}: {
     time: string
 }) {
 
-    return(
+    return (
         <div className='stopwatchTime'>{time}</div>
     )
 }
