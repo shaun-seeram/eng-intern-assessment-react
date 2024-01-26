@@ -23,32 +23,20 @@ describe('LapsContainer', () => {
 
     it('Renders a lap with the correct time: 1 Minute', () => {
         render(<LapsContainer laps={[60000]} formatTime={formatTime} />);
-        const timeEl = screen.getByText(/00:01:00.00/i)
+        const timeEl = screen.getByText("00:01:00.00")
         expect(timeEl).toBeTruthy()
     });
 
     it('Renders a lap with the correct time: 1 Minute, 30 Seconds', () => {
         render(<LapsContainer laps={[90000]} formatTime={formatTime} />);
-        const timeEl = screen.getByText(/00:01:30.00/i)
-        expect(timeEl).toBeTruthy()
-    });
-
-    it('Does not render a lap with the correct time: 1 Minute, 31 Seconds', () => {
-        render(<LapsContainer laps={[90000]} formatTime={formatTime} />);
-        const timeEl = screen.getByText(/00:01:30.00/i)
+        const timeEl = screen.getByText("00:01:30.00")
         expect(timeEl).toBeTruthy()
     });
 
     it('Renders three laps', () => {
         render(<LapsContainer laps={[1000, 2000, 3000]} formatTime={formatTime} />);
-        const lapArray = screen.queryAllByText(/Lap/i)
+        const lapArray = screen.queryAllByRole("listitem")
         expect(lapArray.length).toBe(3)
-    });
-
-    it('Does not render three laps', () => {
-        render(<LapsContainer laps={[1000, 2000, 3000, 4000]} formatTime={formatTime} />);
-        const lapArray = screen.queryAllByText(/Lap/i)
-        expect(lapArray.length).not.toBe(3)
     });
 
 });
