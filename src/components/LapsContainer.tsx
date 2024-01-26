@@ -38,7 +38,7 @@ export default React.memo(function LapsContainer({laps, formatTime}: LapsContain
         return <li key={i} className={classes}><span>Lap {i + 1}</span> <span>{formatTime(adjustedlap)}</span></li>
     }).reverse()
 
-    // ^^ Created an array of nodes, then reversed it so the latest laps appeared first.
+    // ^^ Created an array of nodes, then reversed it so the latest laps appeared first. Used bestBool and worstBool to ensure only one of each are highlighted.
 
     return (
         <ul>

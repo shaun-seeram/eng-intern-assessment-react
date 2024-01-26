@@ -40,16 +40,6 @@ describe('App', () => {
         expect(timeEl.textContent).toBe("00:00:01.00")
     });
 
-    it('Time pauses on "Pause" press', () => {
-        const timeEl = setupFunction()
-        const pauseButton = screen.getByText("Pause")
-        fireEvent.click(pauseButton)
-        act(() => {
-            jest.advanceTimersByTime(1000)
-        })
-        expect(timeEl.textContent).not.toBe("00:00:02.00")
-    });
-
     it('Laps & timer resets on "Reset" press', () => {
         const timeEl = setupFunction()
         const lapButton = screen.getByText("Lap")
@@ -76,5 +66,15 @@ describe('App', () => {
         fireEvent.click(lapButton)
         const recordedLaps = screen.getAllByRole("listitem")
         expect(recordedLaps.length).toBe(2)
+    });
+
+    it('Time pauses on "Pause" press', () => {
+        const timeEl = setupFunction()
+        const pauseButton = screen.getByText("Pause")
+        fireEvent.click(pauseButton)
+        act(() => {
+            jest.advanceTimersByTime(1000)
+        })
+        expect(timeEl.textContent).not.toBe("00:00:02.00")
     });
 });

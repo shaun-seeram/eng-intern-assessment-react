@@ -25,25 +25,13 @@ export default function App() {
 
         useEffect(() => {
             window.onbeforeunload = () => {
-                localStorage.setItem("time", JSON.stringify(time))
+                time > JSON.parse(localStorage.getItem("time")) && localStorage.setItem("time", JSON.stringify(time))
             }
         }, [everySecond])
 
-        // ^^ Indented block persists time on refresh. I felt it would be too intensive to reset the onbeforeunload function everytime "time" changed, so I opted for every 25 milliseconds and using a computed value.
+        // ^^ Indented block persists time on refresh. I felt it would be too intensive to reset the onbeforeunload function everytime "time" changed, so I opted for every .25 seconds and using a computed value.
 
-    // useEffect(() => {
-    //     if (timerActive) {
-    //         timerRef.current = setInterval(() => {
-    //             setTime((oldTime) => {
-    //                 return oldTime += 10
-    //             })
-    //         }, 10)
-    //     } else {
-    //         clearInterval(timerRef.current);
-    //     }
-    // }, [timerActive]);
-
-    // Some code from the below functions could've also been written in a useEffect (as seen above), but I opted to leave in separate functions as I felt it was more readable, and less code. Nonetheless, I left the above to demonstrate my knowledge of useEffect.
+    // Some code from the below functions could've also been written in a useEffect, but I opted to leave in separate functions as I felt it was more readable, and less code.
 
     function handleStartTimer() {
         setTimerActive(true);
@@ -57,15 +45,16 @@ export default function App() {
     function handlePauseTimer() {
         setTimerActive(false);
         clearInterval(timerRef.current);
+        localStorage.setItem("time", JSON.stringify(time))
     }
 
     function handleResetTimer() {
         setTimerActive(false);
         clearInterval(timerRef.current);
-        localStorage.removeItem("laps");
         setTime(0);
-        localStorage.removeItem("time");
         setLaps([]);
+        localStorage.removeItem("laps");
+        localStorage.removeItem("time");
     }
 
     function handleLapTimer() {
