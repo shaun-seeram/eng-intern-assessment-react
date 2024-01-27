@@ -43,17 +43,6 @@ header {
     padding-bottom: 20px;
 }
 
-.stopwatchLower {
-    height: calc((100vh - 45px) / 2) ;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.stopwatchLower::-webkit-scrollbar {
-    display: none;
-  }
-
 .stopwatchUpper .stopwatchTime {
     height: 100%;
     font-size: 6rem;
@@ -89,6 +78,17 @@ header {
     color: #ed4b4d;
 }
 
+.stopwatchLower {
+    height: calc((100vh - 45px) / 2) ;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.stopwatchLower::-webkit-scrollbar {
+    display: none;
+  }
+
 .stopwatchLower ul {
     margin: 0;
     padding: 0;
@@ -109,4 +109,14 @@ header {
 
 .stopwatchLower li.worst {
     color: #f6483f;
+}
+
+@media(max-width: 480px) {
+    .stopwatchUpper .stopwatchTime {
+        font-size: 4rem;
+    }
+
+    .stopwatchUpper .stopwatchButtonContainer button {
+        font-size: 1.2rem;
+    }
 }
